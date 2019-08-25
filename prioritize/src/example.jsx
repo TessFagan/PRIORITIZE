@@ -5,44 +5,10 @@ import update from 'immutability-helper'
 const style = {
     width: 400,
 }
-const Container = () => {
-    {
-        const [cards, setCards] = useState([
-            {
-                id: 1,
-                text: 'Write a cool JS library',
-            },
-            {
-                id: 2,
-                text: 'Make it generic enough',
-            },
-            {
-                id: 3,
-                text: 'Write README',
-            },
-            {
-                id: 4,
-                text: 'Create some examples',
-            },
-            {
-                id: 5,
-                text:
-                    'Spam in Twitter and IRC to promote it (note that this element is taller than the others)',
-            },
-            {
-                id: 6,
-                text: '???',
-            },
-            {
-                id: 7,
-                text: 'PROFIT',
-            },
-            {
-                id: 8,
-                text: 'Tess is da bomb',
 
-            },
-        ])
+const Container = (props) => {
+    {
+        const [cards, setCards] = useState(props.items)
         const moveCard = useCallback(
             (dragIndex, hoverIndex) => {
                 const dragCard = cards[dragIndex]
