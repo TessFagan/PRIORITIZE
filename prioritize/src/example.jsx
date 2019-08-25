@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import Card from './Card'
 import update from 'immutability-helper'
+
 const style = {
     width: 400,
 }
@@ -35,6 +36,11 @@ const Container = () => {
             {
                 id: 7,
                 text: 'PROFIT',
+            },
+            {
+                id: 8,
+                text: 'Tess is da bomb',
+
             },
         ])
         const moveCard = useCallback(
