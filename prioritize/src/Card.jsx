@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import ItemTypes from './ItemTypes'
+import Button from 'react-bootstrap/Button';
 
 const style = {
     border: '1px dashed gray',
@@ -8,7 +9,9 @@ const style = {
     marginBottom: '.5rem',
     backgroundColor: 'white',
     cursor: 'move',
+    overflow: 'auto',
 }
+
 const Card = ({ id, text, index, moveCard }) => {
     const ref = useRef(null)
     const [, drop] = useDrop({
@@ -61,9 +64,14 @@ const Card = ({ id, text, index, moveCard }) => {
     const opacity = isDragging ? 0 : 1
     drag(drop(ref))
     return (
-        <div ref={ref} style={{ ...style, opacity }}>
-            {text}
-        </div>
+        <div>
+            <div ref={ref} style={{ ...style, opacity }}>
+                {text}
+                <div style={{ float: 'right' }}>
+                    <Button variant="danger" type="delete" id="deletebutton"><strong>X</strong></Button>
+                </div>
+            </div>
+        </div >
     )
 }
 export default Card

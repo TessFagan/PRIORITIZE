@@ -4,9 +4,95 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Jumbotron from 'react-bootstrap/Jumbotron'
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+
+class Addpriority extends React.Component {
+  state = {
+    newpriority: []
+  }
+
+  handleClick = (e) => {
+    e.preventDefault();
+    console.log("add clicked =>" + document.getElementById("addpriority").value);
+    console.log(document.getElementById("addpriority").value)
+
+    this.setState({
+      newpriority: document.getElementById("addpriority").value
+    });
+
+  }
+
+  render() {
+    return (
+
+      <Col md={6}>
+        <Jumbotron>
+          <Form>
+            <Form.Group controlId="Addpriority">
+              <Form.Label> <h3>Add a Priority:</h3></Form.Label>
+              <Form.Control type="add" placeholder="Add your priority here"
+                name="addpriority"
+                id="addpriority"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
+              Add
+            </Button>
+          </Form>
+        </Jumbotron>
+      </Col>
+
+
+    )
+  }
+
+}
+
+
+class Addtodo extends React.Component {
+  state = {
+    newtodo: []
+  }
+
+  handleClick = (e) => {
+    e.preventDefault();
+    console.log("add clicked =>" + document.getElementById("addtodo").value);
+    console.log(document.getElementById("addtodo").value)
+
+    this.setState({
+      newtodo: document.getElementById("addtodo").value
+    });
+
+  }
+
+  render() {
+    return (
+
+      <Col md={6}>
+        <Jumbotron>
+          <Form>
+            <Form.Group controlId="Addtodo">
+              <Form.Label> <h3>Add a To-do:</h3></Form.Label>
+              <Form.Control type="add" placeholder="Add your to-do here"
+                name="addtodo"
+                id="addtodo"
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
+              Add
+            </Button>
+          </Form>
+        </Jumbotron>
+      </Col>
+    )
+  }
+}
+
+
 
 
 class Lifepriorities extends React.Component {
@@ -53,8 +139,8 @@ class Lifepriorities extends React.Component {
 
     return (
 
-      <Col md={6}>md=6
-            <Jumbotron>
+      <Col md={6}>
+        <Jumbotron>
           <h3>Life Priorities:</h3>
           <Example items={this.state.Lifepriorities} />
         </Jumbotron>
@@ -70,36 +156,36 @@ class Todolist extends React.Component {
     Todolist: [
       {
         id: 1,
-        text: 'Write a cool JS library',
+        text: 'Buy Cat Food',
       },
       {
         id: 2,
-        text: 'Make it generic enough',
+        text: 'Take out garbage',
       },
       {
         id: 3,
-        text: 'Write README',
+        text: 'Do Laundry',
       },
       {
         id: 4,
-        text: 'Create some examples',
+        text: 'Work on coding homework intensely for a long long time so that i get better',
       },
       {
         id: 5,
         text:
-          'Spam in Twitter and IRC to promote it (note that this element is taller than the others)',
+          'Smile more',
       },
       {
         id: 6,
-        text: '???',
+        text: '?',
       },
       {
         id: 7,
-        text: 'PROFIT',
+        text: 'Save for a house',
       },
       {
         id: 8,
-        text: 'Tess is da bomb',
+        text: 'Call mom',
       },
     ]
 
@@ -108,8 +194,8 @@ class Todolist extends React.Component {
   render() {
     return (
 
-      <Col md={6}>md=6
-            <Jumbotron>
+      <Col md={6}>
+        <Jumbotron>
           <h3>To Do:</h3>
           <Example items={this.state.Todolist} />
         </Jumbotron>
@@ -134,6 +220,8 @@ class Macrocontainer extends React.Component {
     return (
       <Container>
         <Row>
+          <Addpriority />
+          <Addtodo />
           <Lifepriorities />
           <Todolist />
         </Row>

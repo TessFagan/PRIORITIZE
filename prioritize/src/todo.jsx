@@ -29,7 +29,6 @@ const Container = (props) => {
                     text={card.text}
                     moveCard={moveCard}
                 />
-
             )
         }
         return (
