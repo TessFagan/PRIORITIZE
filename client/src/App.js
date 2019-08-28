@@ -10,87 +10,83 @@ import Button from 'react-bootstrap/Button';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-class Addpriority extends React.Component {
-  state = {
-    newpriority: []
-  }
+function Addpriority(props) {
+  // state = {
+  //   newpriority: []
+  // }
 
-  handleClick = (e) => {
-    e.preventDefault();
-    console.log("add clicked =>" + document.getElementById("addpriority").value);
-    console.log(document.getElementById("addpriority").value)
+  // handleClick = (e) => {
+  //   e.preventDefault();
+  //   console.log("add clicked =>" + document.getElementById("addpriority").value);
+  //   console.log(document.getElementById("addpriority").value)
 
-    this.setState({
-      newpriority: document.getElementById("addpriority").value
-    });
+  //   this.setState({
+  //     newpriority: document.getElementById("addpriority").value
+  //   });
 
-  }
+  // }
 
-  render() {
-    return (
 
-      <Col md={6}>
-        <Jumbotron>
-          <Form>
-            <Form.Group controlId="Addpriority">
-              <Form.Label> <h3>Add a Priority:</h3></Form.Label>
-              <Form.Control type="add" placeholder="Add your priority here"
-                name="addpriority"
-                id="addpriority"
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
-              Add
+  return (
+    <Col md={6}>
+      <Jumbotron>
+        <Form>
+          <Form.Group controlId="Addpriority">
+            <Form.Label> <h3>Add a Priority:</h3></Form.Label>
+            <Form.Control type="add" placeholder="Add your priority here"
+              name="addpriority"
+              id="addpriority"
+            />
+          </Form.Group>
+          <Button variant="primary" type="add" id="addpriority" onClick={props.handleClick} key={0}>
+            Add
             </Button>
-          </Form>
-        </Jumbotron>
-      </Col>
+        </Form>
+      </Jumbotron>
+    </Col>
 
-
-    )
-  }
-
+  )
 }
 
 
-class Addtodo extends React.Component {
-  state = {
-    newtodo: []
-  }
+// class Addtodo extends React.Component {
+//   state = {
+//     newtodo: []
+//   }
 
-  handleClick = (e) => {
-    e.preventDefault();
-    console.log("add clicked =>" + document.getElementById("addtodo").value);
-    console.log(document.getElementById("addtodo").value)
+//   handleClick = (e) => {
+//     e.preventDefault();
+//     console.log("add clicked =>" + document.getElementById("addtodo").value);
+//     console.log(document.getElementById("addtodo").value)
 
-    this.setState({
-      newtodo: document.getElementById("addtodo").value
-    });
+//     this.setState({
+//       newtodo: document.getElementById("addtodo").value
+//     });
 
-  }
+//   }
 
-  render() {
-    return (
+//   render() {
+//     return (
 
-      <Col md={6}>
-        <Jumbotron>
-          <Form>
-            <Form.Group controlId="Addtodo">
-              <Form.Label> <h3>Add a To-do:</h3></Form.Label>
-              <Form.Control type="add" placeholder="Add your to-do here"
-                name="addtodo"
-                id="addtodo"
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
-              Add
-            </Button>
-          </Form>
-        </Jumbotron>
-      </Col>
-    )
-  }
-}
+//       <Col md={6}>
+//         <Jumbotron>
+//           <Form>
+//             <Form.Group controlId="Addtodo">
+//               <Form.Label> <h3>Add a To-do:</h3></Form.Label>
+//               <Form.Control type="add" placeholder="Add your to-do here"
+//                 name="addtodo"
+//                 id="addtodo"
+//               />
+//             </Form.Group>
+//             <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
+//               Add
+//             </Button>
+//           </Form>
+//         </Jumbotron>
+//       </Col>
+//     )
+//   }
+// }
 
 
 
@@ -208,20 +204,49 @@ class Todolist extends React.Component {
 class Macrocontainer extends React.Component {
 
   state = {
+    Newpriority: "",
+    Addtodo: [],
     Currentlifepriorities: [],
     Currenttodolist: []
   }
 
-  // define handler functions here
-  // the state will be where people create their lifep + todo, and will pass it down from here
+  handleClick = (e) => {
+    e.preventDefault();
+    console.log("add clicked =>" + document.getElementById("addpriority").value);
+    console.log(document.getElementById("addpriority").value)
+
+    this.setState({
+      Newpriority: document.getElementById("addpriority").value
+    });
+    console.log(this.state.Newpriority);
+
+  }
+
+
   // https://reactjs.org/docs/lifting-state-up.html READ THIS TESS!!
 
   render() {
     return (
       <Container>
         <Row>
-          <Addpriority />
-          <Addtodo />
+          <Col md={12}>
+            <Jumbotron>
+              <Form>
+                <Form.Group controlId="Addpriority">
+                  <Form.Label> <h3>Add a Priority:</h3></Form.Label>
+                  <Form.Control type="add" placeholder="Add your priority here"
+                    name="addpriority"
+                    id="addpriority"
+                  />
+                </Form.Group>
+                <Button variant="primary" type="add" id="addpriority" onClick={this.handleClick} key={0}>
+                  Add
+                </Button>
+              </Form>
+            </Jumbotron>
+          </Col>
+        </Row>
+        <Row>
           <Lifepriorities />
           <Todolist />
         </Row>

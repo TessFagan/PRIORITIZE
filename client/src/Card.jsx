@@ -70,6 +70,10 @@ const Card = ({ id, text, index, moveCard }) => {
                 <div style={{ float: 'right' }}>
                     <Button variant="danger" type="delete" id="deletebutton"><strong>X</strong></Button>
                 </div>
+
+                <div style={{ float: 'right' }}>
+                    <Button variant="success" type="add" id="addbutton"><strong>+</strong></Button>
+                </div>
             </div>
         </div >
     )
