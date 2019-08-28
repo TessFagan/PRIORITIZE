@@ -1,3 +1,3 @@
 module.exports = {
-  Priority: require("./priority")
+  User: require("./user")
 };
