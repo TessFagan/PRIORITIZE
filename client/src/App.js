@@ -7,8 +7,10 @@ import Col from 'react-bootstrap/Col';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import API from "./API";
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import axios from 'axios';
 
 // function Addpriority(props) {
 // state = {
@@ -51,7 +53,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 
 class Addtodo extends React.Component {
   state = {
-    newtodo: []
+    newToDo: ""
   }
 
   handleClick = (e) => {
@@ -63,6 +65,16 @@ class Addtodo extends React.Component {
       newtodo: document.getElementById("addtodo").value
     });
 
+    API.updateUserToDo(1, { todo: this.state.newToDo })
+
+  }
+
+  handleChange = (e) => {
+    const val = e.target.value;
+
+    this.setState({
+      newToDo: val
+    })
   }
 
   render() {
@@ -76,6 +88,8 @@ class Addtodo extends React.Component {
               <Form.Control type="add" placeholder="Add your to-do here"
                 name="addtodo"
                 id="addtodo"
+                value={this.state.newToDo}
+                onChange={this.handleChange}
               />
             </Form.Group>
             <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
@@ -204,11 +218,19 @@ class Todolist extends React.Component {
 class Macrocontainer extends React.Component {
 
   state = {
+    User: "",
     Newpriority: "",
     Addtodo: [],
     Currentlifepriorities: [],
     Currenttodolist: []
   }
+
+
+  loadUser = () => {
+    API.getUser()
+      .then(res => this.setState({ User: res.data }))
+      .catch(err => console.log(err));
+  };
 
   handleClick = (e) => {
     e.preventDefault();
@@ -259,6 +281,9 @@ class Macrocontainer extends React.Component {
 
 
 function App() {
+
+
+
   return (
     <div className="App">
       <DndProvider backend={HTML5Backend}>

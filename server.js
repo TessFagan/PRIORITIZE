@@ -3,6 +3,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
 var mongoose = require("mongoose");
+const routes = require("./routes/apiroutes")
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -12,11 +13,11 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/prioritize", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/Prioritize", { useNewUrlParser: true });
 
 // Define API routes here
+app.use(routes)
 
 // Send every other request to the React app
 
