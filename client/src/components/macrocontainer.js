@@ -22,7 +22,9 @@ class Addtodo extends Component {
             newtodo: document.getElementById("addtodo").value
         });
 
-        API.createUser({ todo: this.state.newToDo })
+        var userData = this.state.newToDo
+
+        API.createUser(userData)
 
     }
 
