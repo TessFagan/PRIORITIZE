@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // Saves a User to the database
   createUser: function (userData) {
-    return axios.post("/api/User", userData);
+    return axios.post("/api/create", userData);
   },
   // Deletes the User with the given id
   updateUserToDo: function (id, userData) {

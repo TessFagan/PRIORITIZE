@@ -1,94 +1,63 @@
-import React from 'react';
+import React, { Component } from "react";
 import Example from './example';
-import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+import API from "../API";
 
-function Addpriority(props) {
-    // state = {
-    //   newpriority: []
-    // }
+class Addtodo extends Component {
+    state = {
+        newToDo: ""
+    }
 
-    // handleClick = (e) => {
-    //   e.preventDefault();
-    //   console.log("add clicked =>" + document.getElementById("addpriority").value);
-    //   console.log(document.getElementById("addpriority").value)
+    handleClick = (e) => {
+        e.preventDefault();
+        console.log("add clicked =>" + document.getElementById("addtodo").value);
+        console.log(document.getElementById("addtodo").value)
 
-    //   this.setState({
-    //     newpriority: document.getElementById("addpriority").value
-    //   });
+        this.setState({
+            newtodo: document.getElementById("addtodo").value
+        });
 
-    // }
+        API.createUser({ todo: this.state.newToDo })
 
+    }
 
-    return (
-        <Col md={6}>
-            <Jumbotron>
-                <Form>
-                    <Form.Group controlId="Addpriority">
-                        <Form.Label> <h3>Add a Priority:</h3></Form.Label>
-                        <Form.Control type="add" placeholder="Add your priority here"
-                            name="addpriority"
-                            id="addpriority"
-                        />
-                    </Form.Group>
-                    <Button variant="primary" type="add" id="addpriority" onClick={props.handleClick} key={0}>
-                        Add
-            </Button>
-                </Form>
-            </Jumbotron>
-        </Col>
+    handleChange = (e) => {
+        const val = e.target.value;
 
-    )
+        this.setState({
+            newToDo: val
+        })
+    }
+
+    render() {
+        return (
+
+            <Col md={6}>
+                <Jumbotron>
+                    <Form>
+                        <Form.Group controlId="Addtodo">
+                            <Form.Label> <h3>Add a To-do:</h3></Form.Label>
+                            <Form.Control type="add" placeholder="Add your to-do here"
+                                name="addtodo"
+                                id="addtodo"
+                                value={this.state.newToDo}
+                                onChange={this.handleChange}
+                            />
+                        </Form.Group>
+                        <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
+                            Add
+              </Button>
+                    </Form>
+                </Jumbotron>
+            </Col>
+        )
+    }
 }
-
-
-// class Addtodo extends React.Component {
-//   state = {
-//     newtodo: []
-//   }
-
-//   handleClick = (e) => {
-//     e.preventDefault();
-//     console.log("add clicked =>" + document.getElementById("addtodo").value);
-//     console.log(document.getElementById("addtodo").value)
-
-//     this.setState({
-//       newtodo: document.getElementById("addtodo").value
-//     });
-
-//   }
-
-//   render() {
-//     return (
-
-//       <Col md={6}>
-//         <Jumbotron>
-//           <Form>
-//             <Form.Group controlId="Addtodo">
-//               <Form.Label> <h3>Add a To-do:</h3></Form.Label>
-//               <Form.Control type="add" placeholder="Add your to-do here"
-//                 name="addtodo"
-//                 id="addtodo"
-//               />
-//             </Form.Group>
-//             <Button variant="primary" type="submit" id="submitbutton" onClick={this.handleClick} key={0}>
-//               Add
-//             </Button>
-//           </Form>
-//         </Jumbotron>
-//       </Col>
-//     )
-//   }
-// }
-
-
 
 
 class Lifepriorities extends React.Component {
@@ -147,6 +116,7 @@ class Lifepriorities extends React.Component {
 
 }
 
+
 class Todolist extends React.Component {
     state = {
         Todolist: [
@@ -204,11 +174,18 @@ class Todolist extends React.Component {
 class Macrocontainer extends React.Component {
 
     state = {
+        User: "",
         Newpriority: "",
         Addtodo: [],
         Currentlifepriorities: [],
         Currenttodolist: []
     }
+
+    loadUser = () => {
+        API.getUser()
+            .then(res => this.setState({ User: res.data }))
+            .catch(err => console.log(err));
+    };
 
     handleClick = (e) => {
         e.preventDefault();
@@ -229,7 +206,7 @@ class Macrocontainer extends React.Component {
         return (
             <Container>
                 <Row>
-                    <Col md={12}>
+                    <Col md={6}>
                         <Jumbotron>
                             <Form>
                                 <Form.Group controlId="Addpriority">
@@ -241,10 +218,11 @@ class Macrocontainer extends React.Component {
                                 </Form.Group>
                                 <Button variant="primary" type="add" id="addpriority" onClick={this.handleClick} key={0}>
                                     Add
-                </Button>
+                  </Button>
                             </Form>
                         </Jumbotron>
                     </Col>
+                    <Addtodo />
                 </Row>
                 <Row>
                     <Lifepriorities />
@@ -256,25 +234,4 @@ class Macrocontainer extends React.Component {
     }
 }
 
-
-function App() {
-    return (
-        <div className="App">
-            <DndProvider backend={HTML5Backend}>
-                <Navbar>
-                    <h1>PRIORITIZE</h1>
-                    <div className="collapse navbar-collapse" id="navbarMenu">
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <a className="nav-link">List Placeholder</a>
-                            </li>
-                        </ul>
-                    </div>
-                </Navbar>
-                <Macrocontainer />
-            </DndProvider>
-        </div >
-    )
-}
-
-export default App;
+export default Macrocontainer;
