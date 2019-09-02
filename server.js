@@ -28,20 +28,42 @@ app.use(
 app.use(bodyParser.json())
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/Prioritize", { useNewUrlParser: true });
+// mongoose.connect("mongodb://localhost/Prioritize", { useNewUrlParser: true });
 
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+//   console.log("we're connected")
+// });
+
+mongoose.Promise = global.Promise
+
+//your local database url
+//27017 is the default mongoDB port
+const uri = 'mongodb://localhost:27017/simple-PRIORITIZE'
+
+mongoose.connect(uri).then(
+  () => {
+    /** ready to use. The `mongoose.connect()` promise resolves to undefined. */
+    console.log('Connected to Mongo');
+
+  },
+  err => {
+    /** handle initial connection error */
+    console.log('error connecting to Mongo: ')
+    console.log(err);
+
+  }
+);
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log("we're connected")
-});
+
 
 
 // / Sessions
 app.use(
   session({
-    secret: 'fraggle-rock', //pick a random string to make the hash that is generated secure
-    store: new MongoStore({ mongooseConnection: dbConnection }),
+    secret: 'tessisamazing', //pick a random string to make the hash that is generated secure
+    store: new MongoStore({ mongooseConnection: db }),
     resave: false, //required
     saveUninitialized: false //required
   })
