@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from 'axios';
-import Navbar from 'react-bootstrap/Navbar';
+// import Navbar from 'react-bootstrap/Navbar';
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 import Macrocontainer from "./components/macrocontainer";
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -54,17 +57,21 @@ class App extends Component {
     return (
       <div className="App">
         <DndProvider backend={HTML5Backend}>
-          <Navbar>
-            <h1>PRIORITIZE</h1>
-            <div className="collapse navbar-collapse" id="navbarMenu">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <a className="nav-link" href="/">List Placeholder</a>
-                </li>
-              </ul>
-            </div>
-          </Navbar>
-          <Macrocontainer />
+          <Router >
+            <Switch>
+              <Route
+                exact path="/"
+                component={Login} />
+              <Route
+                path="/signup"
+                render={() =>
+                  <Signup />} />
+              <Route
+                path="/macrohome"
+                render={() =>
+                  <Macrocontainer />} />
+            </Switch>
+          </Router>
         </DndProvider>
       </div >
     )

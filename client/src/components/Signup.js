@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 
-class Login extends Component {
+class Signup extends Component {
 
     render() {
         return (
@@ -16,11 +16,11 @@ class Login extends Component {
                         </ul>
                     </div>
                 </Navbar>
-                <h3>"Home/Login page"</h3>
+                <h3>"Signup page"</h3>
             </div>
         )
     }
 }
 
 
-export default Login;
+export default Signup;
