@@ -8,7 +8,6 @@ import Macrocontainer from "./components/macrocontainer";
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 
-
 class App extends Component {
 
   constructor() {
@@ -18,39 +17,39 @@ class App extends Component {
       username: null
     }
 
-    // this.getUser = this.getUser.bind(this)
-    // this.componentDidMount = this.componentDidMount.bind(this)
-    // this.updateUser = this.updateUser.bind(this)
+    this.getUser = this.getUser.bind(this)
+    this.componentDidMount = this.componentDidMount.bind(this)
+    this.updateUser = this.updateUser.bind(this)
   }
 
-  // componentDidMount() {
-  //   this.getUser()
-  // }
+  componentDidMount() {
+    this.getUser()
+  }
 
-  // updateUser(userObject) {
-  //   this.setState(userObject)
-  // }
+  updateUser(userObject) {
+    this.setState(userObject)
+  }
 
-  // getUser() {
-  //   axios.get('/user/').then(response => {
-  //     console.log('Get user response: ')
-  //     console.log(response.data)
-  //     if (response.data.user) {
-  //       console.log('Get User: There is a user saved in the server session: ')
+  getUser() {
+    axios.get('/user/').then(response => {
+      console.log('Get user response: ')
+      console.log(response.data)
+      if (response.data.user) {
+        console.log('Get User: There is a user saved in the server session: ')
 
-  //       this.setState({
-  //         loggedIn: true,
-  //         username: response.data.user.username
-  //       })
-  //     } else {
-  //       console.log('Get user: no user');
-  //       this.setState({
-  //         loggedIn: false,
-  //         username: null
-  //       })
-  //     }
-  //   })
-  // }
+        this.setState({
+          loggedIn: true,
+          username: response.data.user.username
+        })
+      } else {
+        console.log('Get user: no user');
+        this.setState({
+          loggedIn: false,
+          username: null
+        })
+      }
+    })
+  }
 
   render() {
 
@@ -61,15 +60,18 @@ class App extends Component {
             <Switch>
               <Route
                 exact path="/"
-                component={Login} />
+                render={() =>
+                  <Login
+                    updateUser={this.updateUser}
+                  />} />
               <Route
                 path="/signup"
                 render={() =>
-                  <Signup />} />
+                  <Signup updateUser={this.updateUser} loggedIn={this.state.loggedIn} />} />
               <Route
                 path="/macrohome"
                 render={() =>
-                  <Macrocontainer />} />
+                  <Macrocontainer updateUser={this.updateUser} loggedIn={this.state.loggedIn} />} />
             </Switch>
           </Router>
         </DndProvider>

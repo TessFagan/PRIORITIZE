@@ -28,13 +28,6 @@ app.use(
 app.use(bodyParser.json())
 
 // Connect to the Mongo DB
-// mongoose.connect("mongodb://localhost/Prioritize", { useNewUrlParser: true });
-
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-//   console.log("we're connected")
-// });
 
 mongoose.Promise = global.Promise
 
@@ -80,9 +73,10 @@ app.use(routes)
 // Send every other request to the React app
 
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 // Start the API server
 app.listen(PORT, () => {

@@ -7,7 +7,7 @@ const passport = require('../passport')
 router.route("/create")
     .post(controller.createUser);
 
-// news stuff below
+// new stuff below
 
 router.post('/', (req, res) => {
     console.log('user signup');

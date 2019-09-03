@@ -7,14 +7,14 @@ export default {
   },
   // Deletes the User with the given id
   updateUserToDo: function (id, userData) {
-    return axios.post("/api/User/" + id, userData);
+    return axios.post("/User/" + id, userData);
   },
   // Gets the User with the given id
   getUser: function (id) {
-    return axios.get("/api/user/" + id);
+    return axios.get("/user/" + id);
   },
   // Deletes the User with the given id
   deleteUser: function (id) {
-    return axios.delete("/api/User/" + id);
+    return axios.delete("/User/" + id);
   }
 };

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from 'react-bootstrap/Navbar';
 import Example from './example';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -206,31 +207,43 @@ class Macrocontainer extends React.Component {
 
     render() {
         return (
-            <Container>
-                <Row>
-                    <Col md={6}>
-                        <Jumbotron>
-                            <Form>
-                                <Form.Group controlId="Addpriority">
-                                    <Form.Label> <h3>Add a Priority:</h3></Form.Label>
-                                    <Form.Control type="add" placeholder="Add your priority here"
-                                        name="addpriority"
-                                        id="addpriority"
-                                    />
-                                </Form.Group>
-                                <Button variant="primary" type="add" id="addpriority" onClick={this.handleClick} key={0}>
-                                    Add
+            <div>
+                <Navbar>
+                    <h1>PRIORITIZE</h1>
+                    <div className="collapse navbar-collapse" id="navbarMenu">
+                        <ul className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <a className="nav-link" href="/">List Placeholder</a>
+                            </li>
+                        </ul>
+                    </div>
+                </Navbar>
+                <Container>
+                    <Row>
+                        <Col md={6}>
+                            <Jumbotron>
+                                <Form>
+                                    <Form.Group controlId="Addpriority">
+                                        <Form.Label> <h3>Add a Priority:</h3></Form.Label>
+                                        <Form.Control type="add" placeholder="Add your priority here"
+                                            name="addpriority"
+                                            id="addpriority"
+                                        />
+                                    </Form.Group>
+                                    <Button variant="primary" type="add" id="addpriority" onClick={this.handleClick} key={0}>
+                                        Add
                   </Button>
-                            </Form>
-                        </Jumbotron>
-                    </Col>
-                    <Addtodo />
-                </Row>
-                <Row>
-                    <Lifepriorities />
-                    <Todolist />
-                </Row>
-            </Container>
+                                </Form>
+                            </Jumbotron>
+                        </Col>
+                        <Addtodo />
+                    </Row>
+                    <Row>
+                        <Lifepriorities />
+                        <Todolist />
+                    </Row>
+                </Container>
+            </div>
 
         )
     }
