@@ -18,6 +18,12 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+
+app.use(express.static('build'));
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
+
+
+
 // MIDDLEWARE MORGAN
 app.use(morgan('dev'))
 app.use(
@@ -74,9 +80,12 @@ app.use(routes)
 
 // Define any API routes before this runs
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'));
+// }
+
+app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
+
 
 // Start the API server
 app.listen(PORT, () => {
