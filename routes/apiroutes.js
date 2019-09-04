@@ -3,17 +3,16 @@ const controller = require("../controllers/controller.js")
 const User = require('../models/User')
 const passport = require('../passport')
 
-// Matches with "/api/create"
-router.route("/create")
-    .post(controller.createUser);
 
-// new stuff below
+// router.route("/create")
+//     .post(controller.createUser);
 
-router.post('/', (req, res) => {
+
+router.route('/').post((req, res) => {
     console.log('user signup');
+    console.log(req.body.username);
+    const { username, password } = req.body;
 
-    const { username, password } = req.body
-    // ADD VALIDATION
     User.findOne({ username: username }, (err, user) => {
         if (err) {
             console.log('User.js post error: ', err)
@@ -23,6 +22,7 @@ router.post('/', (req, res) => {
             })
         }
         else {
+            console.log("apiroutes line 25");
             const newUser = new User({
                 username: username,
                 password: password
@@ -35,8 +35,8 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post(
-    '/login',
+
+router.route('/login').post(
     function (req, res, next) {
         console.log('routes/user.js, login, req.body: ');
         console.log(req.body)

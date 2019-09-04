@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Jumbotron from 'react-bootstrap/Jumbotron';
+import Button from 'react-bootstrap/Button';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -27,7 +28,7 @@ class Login extends Component {
         console.log('handleSubmit')
 
         axios
-            .post('/user/login', {
+            .post('/login', {
                 username: this.state.username,
                 password: this.state.password
             })
@@ -42,7 +43,7 @@ class Login extends Component {
                     })
                     // update the state to redirect to home
                     this.setState({
-                        redirectTo: '/'
+                        redirectTo: '/macrohome'
                     })
                 }
             }).catch(error => {
@@ -52,7 +53,6 @@ class Login extends Component {
             })
     }
 
-    // <h3>"Home/Login page"</h3>
 
     render() {
 
@@ -105,16 +105,15 @@ class Login extends Component {
                             </div>
                             <div className="form-group ">
                                 <div className="col-7"></div>
-                                <button
-                                    className="btn btn-primary col-1 col-mr-auto"
 
-                                    onClick={this.handleSubmit}
-                                    type="submit">Login</button>
-                                <button
-                                    className="btn btn-secondary col-1 col-mr-auto"
+                                <Button variant="primary" type="submit" id="Login" onClick={this.handleSubmit} >
+                                    Login
+                                </Button>
 
-                                    // onClick={}
-                                    type="submit">Create an Account!</button>
+                                <Button variant="secondary" type="create" id="Create" href="/signup">
+                                    Create an Account here!
+                                </Button>
+
                             </div>
                         </form>
                     </Jumbotron>
