@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
+
 import axios from 'axios';
 
 class Login extends Component {
@@ -110,9 +111,11 @@ class Login extends Component {
                                     Login
                                 </Button>
 
-                                <Button variant="secondary" type="create" id="Create" href="/signup">
-                                    Create an Account here!
-                                </Button>
+                                <Link to="/signup">
+                                    <Button variant="secondary" id="Create">
+                                        Create an Account here!
+                                    </Button>
+                                </Link>
 
                             </div>
                         </form>
