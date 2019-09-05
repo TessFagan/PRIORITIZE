@@ -23,7 +23,6 @@ app.use(express.static('build'));
 app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 
 
-
 // MIDDLEWARE MORGAN
 app.use(morgan('dev'))
 app.use(
@@ -39,7 +38,8 @@ mongoose.Promise = global.Promise
 
 //your local database url
 //27017 is the default mongoDB port
-const uri = 'mongodb://localhost:27017/simple-PRIORITIZE'
+// const uri = 'mongodb://localhost:27017/simple-PRIORITIZE'
+const uri = 'mongodb://heroku_vwt7t66n:fcj39god2coilujrt2itvevrrp@ds217548.mlab.com:17548/heroku_vwt7t66n'
 
 mongoose.connect(uri).then(
   () => {
