@@ -4,10 +4,6 @@ const User = require('../models/User')
 const passport = require('../passport')
 
 
-// router.route("/create")
-//     .post(controller.createUser);
-
-
 router.route('/').post((req, res) => {
     console.log('user signup');
     console.log(req.body.username);
@@ -52,7 +48,7 @@ router.route('/login').post(
     }
 )
 
-router.get('/', (req, res, next) => {
+router.route('/user').get((req, res, next) => {
     console.log('===== user!!======')
     console.log(req.user)
     if (req.user) {

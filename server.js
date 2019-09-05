@@ -1,26 +1,23 @@
 const express = require("express");
-const session = require('express-session')
+const session = require('express-session');
 const path = require("path");
-const bodyParser = require('body-parser')
-const morgan = require('morgan')
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose");
-const MongoStore = require('connect-mongo')(session)
+const MongoStore = require('connect-mongo')(session);
 const passport = require('./passport');
-const routes = require("./routes/apiroutes")
+const routes = require("./routes/apiroutes");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
 // }
-
-
-// app.use(express.static('build'));
-// app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 
 
 // MIDDLEWARE MORGAN
@@ -43,8 +40,6 @@ let uri = 'mongodb://localhost:27017/simple-PRIORITIZE'
 if (process.env.NODE_ENV === "production") {
   uri = 'mongodb://heroku_vwt7t66n:fcj39god2coilujrt2itvevrrp@ds217548.mlab.com:17548/heroku_vwt7t66n'
 }
-
-
 
 
 mongoose.connect(uri).then(
@@ -94,9 +89,9 @@ app.use(routes)
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 
 // Start the API server
