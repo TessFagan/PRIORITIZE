@@ -84,7 +84,7 @@ app.use(routes)
 //   app.use(express.static('client/build'));
 // }
 
-// app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
+app.get('*', (req, res) => res.sendFile(path.resolve('index.html')));
 
 
 // Start the API server
