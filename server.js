@@ -38,7 +38,8 @@ mongoose.Promise = global.Promise
 let uri = 'mongodb://localhost:27017/simple-PRIORITIZE'
 
 if (process.env.NODE_ENV === "production") {
-  uri = 'mongodb://heroku_vwt7t66n:fcj39god2coilujrt2itvevrrp@ds217548.mlab.com:17548/heroku_vwt7t66n'
+  // uri = 'mongodb://heroku_vwt7t66n:fcj39god2coilujrt2itvevrrp@ds217548.mlab.com:17548/heroku_vwt7t66n'
+  uri = 'mongodb://heroku_dr05z7cx:oe0etbq06g54jq1rg0odtfsmhb@ds217548.mlab.com:17548/heroku_dr05z7cx'
 }
 
 mongoose.connect(uri).then(
@@ -79,7 +80,7 @@ app.use(routes)
 // Send every other request to the React app
 // Define any API routes before this runs
 
-app.use(express.static(path.join(__dirname, 'build')));
+// app.use(express.static(path.join(__dirname, 'build')));
 
 // app.get('/*', function (req, res) {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
