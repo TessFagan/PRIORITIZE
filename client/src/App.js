@@ -66,11 +66,19 @@ class App extends Component {
               <Route
                 exact path="/signup"
                 render={() =>
-                  <Signup updateUser={this.updateUser} loggedIn={this.state.loggedIn} />} />
+                  <Login
+                    updateUser={this.updateUser}
+                  />} />
+              {/* render={() =>
+                  <Signup updateUser={this.updateUser} loggedIn={this.state.loggedIn} />} /> */}
               <Route
                 exact path="/macrohome"
                 render={() =>
-                  <Macrocontainer updateUser={this.updateUser} loggedIn={this.state.loggedIn} />} />
+                  <Login
+                    updateUser={this.updateUser}
+                  />} />
+              {/* render={() =>
+                  <Macrocontainer updateUser={this.updateUser} loggedIn={this.state.loggedIn} />} /> */}
             </Switch>
           </Router>
         </DndProvider>

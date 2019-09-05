@@ -14,6 +14,7 @@ const routes = require("./routes/apiroutes");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -29,18 +30,16 @@ app.use(
 )
 app.use(bodyParser.json())
 
-// Connect to the Mongo DB
 
+// Connect to the Mongo DB
 mongoose.Promise = global.Promise
 
-//your local database url
-//27017 is the default mongoDB port
+//your local database url, 27017 is the default mongoDB port
 let uri = 'mongodb://localhost:27017/simple-PRIORITIZE'
 
 if (process.env.NODE_ENV === "production") {
   uri = 'mongodb://heroku_vwt7t66n:fcj39god2coilujrt2itvevrrp@ds217548.mlab.com:17548/heroku_vwt7t66n'
 }
-
 
 mongoose.connect(uri).then(
   () => {
@@ -58,7 +57,7 @@ mongoose.connect(uri).then(
 var db = mongoose.connection;
 
 
-// / Sessions
+// Sessions
 app.use(
   session({
     secret: 'tessisamazing', //pick a random string to make the hash that is generated secure
@@ -67,6 +66,7 @@ app.use(
     saveUninitialized: false //required
   })
 )
+
 
 // Passport
 app.use(passport.initialize())
@@ -77,17 +77,13 @@ app.use(passport.session()) // calls the deserializeUser
 app.use(routes)
 
 // Send every other request to the React app
-
 // Define any API routes before this runs
-
-// app.get('*', (req, res) => res.sendFile(path.resolve('build', 'index.html')));
 
 app.use(express.static(path.join(__dirname, 'build')));
 
 // app.get('/*', function (req, res) {
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
-
 
 // Start the API server
 app.listen(PORT, () => {
